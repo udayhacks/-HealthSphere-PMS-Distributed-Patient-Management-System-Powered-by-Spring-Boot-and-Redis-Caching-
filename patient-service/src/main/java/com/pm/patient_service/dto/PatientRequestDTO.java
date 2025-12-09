@@ -1,5 +1,6 @@
 package com.pm.patient_service.dto;
 // these are object only to share data as per required ways it give data from client
+import com.pm.patient_service.validators.CreatePatientValidationGroup;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,7 +19,7 @@ public class PatientRequestDTO {
     @NotBlank(message = "date of birth is required")
     private String dateOfBirth;
 
-    @NotBlank(message = "register date needed")
+    @NotBlank( groups = CreatePatientValidationGroup.class, message = "register date needed")
     private String registeredDate;
 
     public String getAddress() {

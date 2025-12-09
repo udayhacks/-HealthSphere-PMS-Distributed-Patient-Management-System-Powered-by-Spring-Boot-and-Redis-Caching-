@@ -43,10 +43,11 @@ public class PatientService {
         return PatientMapper.toDTO(patient);
         // here we add data patient to database and convert to DTO type and return ;
         }
+
     public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO patientRequestDTO){
 
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException("Patient not found "+id));
-        if ( patientRepository.existsByEmail(patientRequestDTO.getEmail())){
+        if ( patientRepository.exitsByEmailAndNotId(patientRequestDTO.getEmail(),id)){
             throw new EmailAlreadyExistException("a Patient email is already Exist "+ patientRequestDTO.getEmail());
         }
 
@@ -55,17 +56,11 @@ public class PatientService {
         patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
         patient.setEmail(patientRequestDTO.getEmail());
 
-
-
         return PatientMapper.toDTO(patientRepository.save(patient));
+    }
 
-
-
-
-
-
-
-
+    public  void deletePatient(UUID id){
+        patientRepository.deleteById(id);
     }
 
 
