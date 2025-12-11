@@ -7,7 +7,15 @@
         <option value="$USER_HOME$/Downloads/Patient-service/Patient-service/pom.xml" />
         <option value="$PROJECT_DIR$/Patient-service/pom.xml" />
         <option value="$PROJECT_DIR$/patient-service/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/billingService/billingService/pom.xml" />
+        <option value="$PROJECT_DIR$/billingService/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
