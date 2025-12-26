@@ -90,4 +90,29 @@ well organised system for peek use ..
     </build>
 ```
 
+
+
+# kafka (event/message)
+- configuration
+    - image 
+        ```declarative
+            apache/kafka:latest
+          
+          
+        ```
+    - properties and envs
+      
+      ```declarative
+          KAFKA_NODE_ID=1
+          KAFKA_PROCESS_ROLES=broker,controller
+          KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+          KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+          KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+          KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+          CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk
+        ```
+      - used for Notification and Analytice and some other microservice for asynchronse communication ;
+
+
 # to be continued ........... (:
