@@ -47,6 +47,8 @@ public class BillingServiceGrpcClient {
 
         BillResponse response = blockingStub.createBillingAccount(request);
 
+
+
         log.info("Received response from billing service: {}", response);
 
         return response;
