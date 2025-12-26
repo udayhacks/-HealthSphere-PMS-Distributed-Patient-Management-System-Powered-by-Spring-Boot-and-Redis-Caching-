@@ -22,7 +22,7 @@ public class BillingGrpcService  extends BillingServiceImplBase {
 
     @Override
     public  void createBillingAccount(BillRequest billRequest, StreamObserver<BillResponse> responseObserver){
-        log.info("createBillingAccount request recived "+billRequest.toString());
+        log.info("createBillingAccount request recived {}", billRequest.toString());
         ///  business logic : save to database
 
         BillResponse response = BillResponse.newBuilder()

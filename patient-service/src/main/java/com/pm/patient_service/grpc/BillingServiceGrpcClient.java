@@ -13,39 +13,43 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class BillingServiceGrpcClient {
 
-    private  static  final Logger log =  LoggerFactory.getLogger(BillingServiceGrpcClient.class);
-    private final BillingServiceGrpc.BillingServiceBlockingStub blockingStub  ;
+    private static final Logger log =
+            LoggerFactory.getLogger(BillingServiceGrpcClient.class);
+
+    private final BillingServiceGrpc.BillingServiceBlockingStub blockingStub;
 
     public BillingServiceGrpcClient(
             @Value("${billing.service.address:localhost}") String serverAddress,
-            @Value("${billing.service.grpc.port:9001") int serverPort ){
+            @Value("${billing.service.grpc.port:9001}") int serverPort) {
 
-        log.info("connetion serveraddress at "+serverAddress+ " at port "+serverPort);
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(serverAddress,serverPort)
-                .usePlaintext().build();
-        // creating a channel for every new patient
+        log.info("Connecting to billing service at {}:{}", serverAddress, serverPort);
 
-        blockingStub = BillingServiceGrpc.newBlockingStub(channel);
-        // here blockingStub is act as client in future ;
-    }
-
-    public BillResponse  createBillingAccount ( String patientId,String name , String email){
-        BillRequest request = BillRequest.newBuilder()
-                .setEmail(email).setName(name).setPatientId(patientId)
+        ManagedChannel channel = ManagedChannelBuilder
+                .forAddress(serverAddress, serverPort)
+                .usePlaintext()
                 .build();
 
-        // craft request ;
-        BillResponse response = blockingStub.createBillingAccount(request);
-        // loaded request in respone as client as blockingStub;
-        log.info("received response billing service from GRPC     "+ response);
-        return response;
-
-
+        this.blockingStub = BillingServiceGrpc.newBlockingStub(channel);
     }
 
+    public BillResponse createBillingAccount(String patientId, String name, String email) {
 
+        BillRequest request = BillRequest.newBuilder()
+                .setPatientId(patientId)
+                .setName(name)
+                .setEmail(email)
+                .build();
 
+        log.info("Creating billing account via gRPC for patientId={}", patientId);
 
+        BillResponse response = blockingStub.createBillingAccount(request);
+
+        log.info("Received response from billing service: {}", response);
+
+        return response;
+    }
 }
+
