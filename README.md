@@ -3,8 +3,10 @@ well organised system for peek use ..
 # Task's & Status  :
 
 - Create a patient servies Done !
-- Docker task Completed !
--  created  Billing Serivce using Grpc Done !
+  - Docker task Completed !
+  -  created  Billing Serivce using Grpc Done !
+  - Added billing functionalities and dependency injections .
+  - kafka container created .
 
 
 
