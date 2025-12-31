@@ -19,6 +19,7 @@ public class KafkaProducer {
     }
     public  void  sendEvent(Patient patient) {
         //log.info("kafka message is started");
+        //
         PatientEvent patientEvent = PatientEvent.newBuilder()
                 .setPatientId(patient.getId().toString())
                 .setName(patient.getName())
